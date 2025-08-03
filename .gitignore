@@ -6,6 +6,8 @@
 
 # Ignorar lock files si no se desea controlar versiones exactas (opcional)
 **/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
 
 # Ignorar archivos de entorno
 **/.env
@@ -28,3 +30,12 @@ Thumbs.db
 # Ignorar backups temporales
 *~
 *.bak
+
+# Ignorar archivos y carpetas específicas de Vue
+**/.output/
+**/.cache/
+**/.vite/
+**/vite.config.js
+**/vite.config.ts
+**/vue.config.js
+**/vue.config.ts
