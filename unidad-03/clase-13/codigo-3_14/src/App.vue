@@ -1,11 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+const nombre = ref('')
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="saludo">
+    <h1>Hola, {{ nombre }}</h1>
+    <input v-model="nombre" placeholder="Escribe tu nombre" />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.saludo {
+  max-width: 300px;
+  margin: 2rem auto;
+  text-align: center;
+}
+input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+</style>
