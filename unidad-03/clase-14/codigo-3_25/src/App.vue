@@ -19,6 +19,7 @@ const AsyncUserInsights = defineAsyncComponent({
   suspensible: true,
   delay: 200,
   timeout: 8000,
+  errorComponent: ErrorCard,
   onError(error, retry, fail, attempts) {
     if (attempts <= 2) retry()
     else fail()
