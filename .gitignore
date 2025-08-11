@@ -39,3 +39,6 @@ Thumbs.db
 **/vite.config.ts
 **/vue.config.js
 **/vue.config.ts
+
+# Proyectos inválidos o no deseados
+**/codigo-3_23
