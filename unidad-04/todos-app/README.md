@@ -278,9 +278,11 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 👥 Autor
 
-**Tu Nombre**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu-email@ejemplo.com
+**Rodrigo Tufiño**  
+- GitHub: [rtufino](https://github.com/rtufino)
+- Email: rtufino@ups.edu.ec
+
+> El código ha sido creado con el apoyo de herramientas de IA.
 
 ## 🙏 Agradecimientos
 
@@ -290,6 +292,10 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 - [Bootstrap](https://getbootstrap.com/) por el diseño
 - [Railway](https://railway.app/) por el hosting del backend
 - [Netlify](https://netlify.com/) por el hosting del frontend
+- [IA Roo Code](https://roo-code.com/) por asistencia de IA
+- [GitHub Copilot](https://github.com/features/copilot) por asistencia de IA
+- [Anthropic](https://www.anthropic.com/) por asistencia de IA
+- [ChatGPT](https://chat.openai.com/) por asistencia de IA
 
 ---
 
