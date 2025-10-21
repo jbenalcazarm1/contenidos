@@ -1,26 +1,120 @@
 [
   {
     "id": 1,
-    "titulo": "Dune",
-    "imagen": "dune.jpg",
-    "genero": "Aventura",
-    "sinopsis": "Un joven emprende una misión para salvar su mundo.",
-    "trailer": "https://www.youtube.com/embed/mSY_NbSmaUI"
+    "titulo": "Dune: Parte Dos",
+    "generos": [
+      "Ciencia Ficción",
+      "Aventura",
+      "Drama"
+    ],
+    "imagen": "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05ES0xA.jpg",
+    "sinopsis": "Sigue el viaje mítico de Paul Atreides mientras se une a Chani y los Fremen en un camino de venganza contra los conspiradores que destruyeron a su familia. Paul deberá elegir entre el amor de su vida y el destino del universo.",
+    "trailer": "https://www.youtube.com/watch?v=U2Qp5pL3ovA",
+    "estreno": "2024-03-01",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 9.00
+    }
   },
   {
     "id": 2,
-    "titulo": "50 primeras citas",
-    "imagen": "50-primeras-citas.jpg",
-    "genero": "Comedia",
-    "sinopsis": "Henry se enamora de Lucy, una mujer con pérdida de memoria a corto plazo.",
-    "trailer": "https://www.youtube.com/embed/17KJk3ErIx0"
+    "titulo": "Intensa-Mente 2",
+    "generos": [
+      "Animación",
+      "Comedia",
+      "Familia",
+      "Aventura"
+    ],
+    "imagen": "https://image.tmdb.org/t/p/w500/9dLE5rtVSIoSxfvEVk9tGQPvY2r.jpg",
+    "sinopsis": "La mente de Riley, ahora adolescente, sufre una repentina demolición para hacer sitio a algo totalmente inesperado: ¡nuevas Emociones! Alegría, Tristeza, Furia, Temor y Desagrado no saben cómo sentirse cuando aparece Ansiedad.",
+    "trailer": "https://www.youtube.com/watch?v=LEjhY15eCx0",
+    "estreno": "2024-06-14",
+    "precios": {
+      "estreno": 13.00,
+      "normal": 9.50
+    }
   },
   {
     "id": 3,
+    "titulo": "Joker: Folie à Deux",
+    "generos": [
+      "Musical",
+      "Crimen",
+      "Drama",
+      "Thriller"
+    ],
+    "imagen": "https://image.tmdb.org/t/p/w500/ywiWxNJ2Q0E2QonM5V8wwt4h0M5.jpg",
+    "sinopsis": "Arthur Fleck busca compañía mientras está internado en el Asilo Arkham, encontrando una conexión con otra paciente, Harleen Quinzel (Harley Quinn), en un oscuro y retorcido musical.",
+    "trailer": "https://www.youtube.com/watch?v=xy8aJw1vYHo",
+    "estreno": "2024-10-04",
+    "precios": {
+      "estreno": 14.00,
+      "normal": 10.00
+    }
+  },
+  {
+    "id": 4,
+    "titulo": "El Padrino",
+    "generos": [
+      "Drama",
+      "Crimen"
+    ],
+    "imagen": "https://image.tmdb.org/t/p/w500/6kb0Q2nBGmCFcns0P3Jex0g5m6e.jpg",
+    "sinopsis": "El envejecido patriarca de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su reacio hijo menor.",
+    "trailer": "https://www.youtube.com/watch?v=sY1S34973zA",
+    "estreno": "1972-03-24",
+    "precios": {
+      "estreno": 8.00,
+      "normal": 8.00
+    }
+  },
+  {
+    "id": 5,
+    "titulo": "Dune",
+    "generos": [
+      "Aventura",
+      "Ciencia Ficción"
+    ],
+    "imagen": "dune.jpg",
+    "sinopsis": "Un joven emprende una misión para salvar su mundo.",
+    "trailer": "https://www.youtube.com/embed/mSY_NbSmaUI",
+    "estreno": "2021-10-22",
+    "precios": {
+      "estreno": 11.00,
+      "normal": 8.50
+    }
+  },
+  {
+    "id": 6,
+    "titulo": "50 primeras citas",
+    "generos": [
+      "Comedia",
+      "Romance"
+    ],
+    "imagen": "50-primeras-citas.jpg",
+    "sinopsis": "Henry se enamora de Lucy, una mujer con pérdida de memoria a corto plazo.",
+    "trailer": "https://www.youtube.com/embed/17KJk3ErIx0",
+    "estreno": "2004-02-13",
+    "precios": {
+      "estreno": 9.00,
+      "normal": 7.00
+    }
+  },
+  {
+    "id": 7,
     "titulo": "Batman Caballero de la Noche",
+    "generos": [
+      "Acción",
+      "Drama",
+      "Crimen"
+    ],
     "imagen": "batman-caballero-de-la-noche.webp",
-    "genero": "Acción",
     "sinopsis": "La película comienza con el violento robo de uno de los bancos de la mafia por una banda de payasos.",
-    "trailer": "https://www.youtube.com/embed/dzQtWkpc2-c"
+    "trailer": "https://www.youtube.com/embed/dzQtWkpc2-c",
+    "estreno": "2008-07-18",
+    "precios": {
+      "estreno": 10.00,
+      "normal": 8.00
+    }
   }
 ]
