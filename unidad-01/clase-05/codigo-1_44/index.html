@@ -1,41 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Películas en Cartelera</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">CinePlus</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/contacto.html">Contacto</a></li>
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Películas en Cartelera</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">JBFlix</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/contacto.html">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="welcome-alert-container" class="container pt-3"></div>
+
+    <header class="hero text-white text-center p-5">
+      <h1>Películas en Cartelera</h1>
+      <p class="lead">Consulta los estrenos y favoritos del público</p>
+    </header>
+
+    <main class="container py-4 flex-grow-1">
+      <div class="row" id="lista-peliculas">
+        <!-- Películas cargadas dinámicamente -->
+      </div>
+    </main>
+
+    <!-- Modal para el tráiler -->
+    <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true" data-bs-theme="dark">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="trailerModalLabel">Tráiler</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-0">
+            <div class="ratio ratio-16x9">
+              <iframe src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <header class="bg-primary text-white text-center p-4">
-    <h1>Películas en Cartelera</h1>
-    <p class="lead">Consulta los estrenos y favoritos del público</p>
-  </header>
+    <footer class="bg-dark text-center text-white py-3 mt-auto">
+      <small>&copy; <span id="añoActual"></span> JBFlix. Todos los derechos reservados.</small>
+    </footer>
 
-  <main class="container py-4">
-    <div class="row" id="lista-peliculas">
-      <!-- Películas cargadas dinámicamente -->
-    </div>
-  </main>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Alerta de bienvenida
+        if (!localStorage.getItem('welcomeShown')) {
+          const alertHtml = `
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <strong>¡Bienvenido a JBFlix!</strong> Disfruta de los últimos estrenos.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+          $('#welcome-alert-container').html(alertHtml);
+          localStorage.setItem('welcomeShown', 'true');
+        }
 
-  <footer class="bg-dark text-center text-white py-3">
-    <small>&copy; 2024 CinePlus. Todos los derechos reservados.</small>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="js/app.js"></script>
-</body>
+        // Año actual en el footer
+        const fecha = new Date();
+        const año = fecha.getFullYear();
+        $("#añoActual").text(año);
+      });
+    </script>
+  </body>
 </html>

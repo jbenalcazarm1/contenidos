@@ -1,9 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+/* Paleta de colores inspirada en Netflix */
+:root {
+  --netflix-red: #e50914;
+  --netflix-dark: #141414;
+  --netflix-gray: #f8f9fa;
+}
+
 body {
-    background-color: #f8f9fa;
+  background-color: var(--netflix-dark);
+  color: var(--netflix-gray);
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--netflix-red) !important;
+}
+
+h1, h2, h5.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1.5px;
+  color: #aab5bd;
+  font-weight: 900;
+}
+
+header.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/header-bg.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.card {
+  position: relative; /* Necesario para posicionar la insignia */
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0; /* Oculto por defecto para la animación */
+  transform: scale(0.95);
+}
+
+.card.visible {
+  animation: card-zoom-in 0.5s forwards;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.card img {
+  height: 450px; /* Aumentamos la altura para un look más cinematográfico */
+  object-fit: cover;
+}
+
+.card-text {
+  color: #adb5bd; /* Texto más claro para mejor contraste */
+}
+
+.btn-primary {
+  background-color: var(--netflix-red);
+  border-color: var(--netflix-red);
+}
+
+/* --- Mejoras de Hover y Cohesión de Color --- */
+.btn:hover {
+  filter: brightness(1.2);
+  transition: filter 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #c40812; /* Un rojo ligeramente más oscuro */
+  border-color: #c40812;
+  filter: brightness(1); /* Evita el doble efecto */
+}
+
+/* Unificando colores de badges */
+.badge.bg-info { background-color: #495057 !important; }
+.badge.bg-success { background-color: #198754 !important; }
+
+/* Insignia de Estreno en la tarjeta */
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+}
+
+@keyframes card-zoom-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .card img {
-    height: 250px;
-    object-fit: cover;
-  }
-  
+}

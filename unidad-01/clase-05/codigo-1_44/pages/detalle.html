@@ -4,58 +4,92 @@
     <meta charset="UTF-8" />
     <title>Detalle de Película</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body>
-    <div class="container py-5">
-      <div class="text-center mb-4">
-        <h2 id="titulo" class="mb-3"></h2>
-
-        <!-- Componente: Alerta informativa -->
-        <div class="alert alert-info" role="alert">
-          ¡Disfruta del tráiler oficial y conoce más sobre esta película!
-        </div>
-
-        <!-- Tráiler embebido -->
-        <div class="ratio ratio-16x9 mb-4">
-          <iframe id="trailer" src="" allowfullscreen></iframe>
+  <body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">JBFlix</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          </ul>
         </div>
       </div>
+    </nav>
+    <div class="container py-5">
+      <!-- Título de la película -->
+      <h2 id="titulo" class="mb-4 text-center">Cargando...</h2>
 
-      <!-- Tarjeta con sinopsis e imagen -->
-      <div class="card mb-4">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              id="poster"
-              src=""
-              class="img-fluid rounded-start"
-              alt="Poster de la película"
-            />
+      <div id="detalle-contenido">
+        <!-- Contenido dinámico de la película -->
+        <div class="row">
+          <div class="col-md-4 text-center text-md-start">
+            <img id="poster" src="" class="img-fluid rounded shadow mb-3" alt="Poster de la película" />
           </div>
           <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Sinopsis</h5>
-              <p id="sinopsis" class="card-text"></p>
+            <h4 class="border-bottom pb-2 mb-3">Sinopsis</h4>
+            <p id="sinopsis"></p>
 
-              <!-- Componente: Badge de género -->
-              <span id="genero" class="badge bg-secondary"></span>
+            <div id="badges-container" class="mb-3">
+              <!-- Badges de estado y precio -->
             </div>
+
+            <div id="generos-container" class="mb-3">
+              <!-- Badges de género -->
+            </div>
+
+            <p><strong>Fecha de Estreno:</strong> <span id="fecha-estreno"></span></p>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#trailerModal" id="verTrailerBtn">
+              Ver Tráiler
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="text-center">
+      <div class="text-center mt-5">
         <a href="../index.html" class="btn btn-secondary">Volver al inicio</a>
       </div>
     </div>
 
+    <!-- Modal para el tráiler (reutilizado de index.html) -->
+    <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true" data-bs-theme="dark">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="trailerModalLabel">Tráiler</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-0">
+            <div class="ratio ratio-16x9">
+              <iframe src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       $(function () {
+        function esEstreno(fechaEstreno) {
+          const fechaPelicula = new Date(fechaEstreno);
+          const hoy = new Date();
+          const diffTiempo = hoy.getTime() - fechaPelicula.getTime();
+          const diffDias = diffTiempo / (1000 * 3600 * 24);
+          return diffDias >= 0 && diffDias <= 30;
+        }
+
+        function getPrecio(peli) {
+          if (esEstreno(peli.estreno)) {
+            return peli.precios.estreno;
+          }
+          return peli.precios.normal;
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
 
@@ -69,8 +103,27 @@
               $("#titulo").text(peli.titulo);
               $("#poster").attr("src", "../img/" + peli.imagen);
               $("#sinopsis").text(peli.sinopsis);
-              $("#trailer").attr("src", peli.trailer);
-              $("#genero").text(peli.genero);
+              $("#verTrailerBtn").attr("data-trailer-url", peli.trailer);
+
+              const fechaFormateada = new Date(peli.estreno + 'T00:00:00').toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+              $("#fecha-estreno").text(fechaFormateada);
+
+              const esPeliEstreno = esEstreno(peli.estreno);
+              const precioActual = getPrecio(peli).toFixed(2);
+              const estadoBadge = esPeliEstreno
+                ? `<span class="badge bg-success me-2">Estreno</span>`
+                : `<span class="badge bg-info me-2">En Cartelera</span>`;
+              const precioBadge = `<span class="badge bg-primary">Precio: $${precioActual}</span>`;
+              $("#badges-container").html(estadoBadge + precioBadge);
+
+              let generosHtml = "";
+              if (peli.generos && peli.generos.length > 0) {
+                peli.generos.forEach(function (genero) {
+                  generosHtml += `<span class="badge bg-secondary me-1">${genero}</span>`;
+                });
+              }
+              $("#generos-container").html(generosHtml);
+
             } else {
               mostrarError();
             }
@@ -81,15 +134,21 @@
         });
 
         function mostrarError() {
-          $("#detalle-pelicula").html(`
-          <div class="alert alert-danger text-center" role="alert">
-            No se pudo cargar la información de la película.
-          </div>
-          <div class="text-center">
-            <a href="../index.html" class="btn btn-secondary mt-3">Volver al inicio</a>
-          </div>
-        `);
+          $("#titulo").text("Película no encontrada");
+          $("#detalle-contenido").html(`
+            <div class="alert alert-danger text-center" role="alert">
+              Lo sentimos, no pudimos encontrar los detalles para la película que buscas.
+            </div>
+          `);
         }
+
+        // Lógica para el modal del tráiler
+        $('#trailerModal').on('show.bs.modal', function () {
+            const trailerUrl = $("#verTrailerBtn").data('trailer-url');
+            $('iframe', this).attr('src', trailerUrl + "?autoplay=1");
+        }).on('hidden.bs.modal', function () {
+            $('iframe', this).attr('src', '');
+        });
       });
     </script>
   </body>
